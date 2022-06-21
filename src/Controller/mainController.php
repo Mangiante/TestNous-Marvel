@@ -30,6 +30,7 @@ class mainController extends AbstractController
      */
     public function show(HeroPowerRepository $heroPowerRepository, PowerRepository $powerRepository, TeamRepository $teamRepository, HeroRepository $heroRepository, $id): Response
     {
+        // Récupération des pouvoirs du héro sélectionné
         $powers = $heroPowerRepository->findAll();
         $powers_hero = array();
         foreach($powers as $power){
@@ -39,6 +40,7 @@ class mainController extends AbstractController
             }
         }
 
+        // Récupération de la team du héro sélectionné
         $hero = $heroRepository->find($id);
         $team = $teamRepository->find($hero->getTeam());
 

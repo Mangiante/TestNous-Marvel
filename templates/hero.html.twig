@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<style>
+		strong {
+			font-weight: bold;
+			font-size: 25px;
+		}
+	</style>
+	<nav style="background-color:red; margin-top:-15px">
+		<h1>{{hero.identity}}</h1>
+	</nav>
+	<div style="display:inline-block;vertical-align:top;"></div>
+	<div style="color:white; font-size: 20px ">
+
+		<p style="float: left;margin-top: -30px;"><img src="{{ asset('images/hero_pic/' ~ hero.picture) }}" alt="" style="width:80%; border-radius:5px; margin: 30px; border:2px solid white"></p>
+		<strong>
+			First Name:
+		</strong>
+		{{ hero.firstname }}
+		<br>
+		<strong>
+			Last Name:
+		</strong>
+		{% if hero.lastname == null %}
+			Unknown
+		{% else %}
+			{{ hero.lastname }}
+		{% endif %}
+		<br>
+		<strong>
+			Team:
+			<span style="color:red">{{team.name}}</span>
+		</strong>
+		<br>
+		<strong>
+			Origin:
+		</strong>
+		{{ hero.origin }}
+		<br>
+		<strong>
+			Powers:
+		</strong>
+		{% for power_hero in powers %}
+			{{ power_hero.power|lower|capitalize }}
+			{% if not loop.last %},
+			{% endif %}
+		{% endfor %}.
+		<br>
+		<br>
+		<strong>
+			Description :
+		</strong>
+		<br>
+		{{hero.Description}}
+	</div>
+{% endblock %}

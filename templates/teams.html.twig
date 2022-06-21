@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<style>
+		a {
+			color: #fff;
+		}
+		a:hover {
+			color: #fff;
+		}
+		h4 {
+			font-size: 15px;
+			text-align: center;
+			background-color: red;
+			margin-top: -29px;
+			transform: skewY(-3deg);
+		}
+		.team {
+			text-decoration: underline;
+			text-decoration-color: red;
+			text-underline-offset: 0.2em;
+		}
+
+		/* Font Card */
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			display: grid;
+			margin-left: 20px;
+			margin-bottom: 20px
+		}
+
+		.container {
+			padding: 2px -50px;
+		}
+	</style>
+	<!-- Content -->
+	<div style="margin-left:40px; margin-top:40px">
+		{% for team in teams %}
+			<h1 class="team">TEAM #{{ team.id }}
+				{{ team.name }}</h1><br>
+			<div class="row">
+				{% for hero in heros %}
+					{% if hero.team == team.id %}
+						<div class="card col-6 col-md-2  p-0">
+							<img src="{{ asset('images/hero_pic/' ~ hero.picture) }}" alt="" style="width:100%; border-radius:5px">
+							<h4>
+								<a href="{{ path("hero", {'id': hero.id}) }}">{{ hero.identity }}</a>
+							</h4>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
